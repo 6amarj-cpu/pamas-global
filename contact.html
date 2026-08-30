@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact the trading desk — PAMAS Global Sdn Bhd</title>
+<meta name="description" content="Send an enquiry to PAMAS Global Sdn Bhd. Include product, quantity, delivery term and discharge port for a same-day indication.">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="masthead">
+  <div class="wrap masthead__bar">
+    <a class="brand" href="index.html">
+      <span class="brand__name">PAMAS<span class="brand__mark">.</span>GLOBAL</span>
+      <span class="brand__sub">Sdn Bhd &middot; Malaysia</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Products</a>
+      <a href="process.html">How we work</a>
+      <a href="sustainability.html">Sustainability</a>
+      <a class="btn btn--primary nav__cta" href="contact.html">Request a quote</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero">
+    <div class="hero__media">
+      <img src="assets/img/hero-plantation.jpg" alt="" fetchpriority="high">
+    </div>
+    <div class="wrap hero__inner">
+      <p class="hero__eyebrow">Contact</p>
+      <h1>Send us an enquiry.</h1>
+      <p class="hero__lede">Include product, quantity, delivery term and discharge port and we can usually come back with an indication the same working day.</p>
+      
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="grid grid--sidebar">
+        <div>
+          <p class="eyebrow">Enquiry form</p>
+          <h2>Request a quote</h2>
+          <p class="lede">Fields marked <span class="req" style="color:var(--carotene)">*</span> are
+            needed before we can price. Everything else helps us hold the price tighter.</p>
+
+          <p class="field__hint" style="margin-top:var(--s3)">Form endpoint not yet connected: <span class="tbd">[FORM ENDPOINT URL]</span> &mdash; until it is set, the button below will not send.</p>
+          <form method="post" action="" style="margin-top:var(--s2)">
+            <div class="grid grid--2" style="gap:0 var(--s3)">
+              <div class="field">
+                <label for="name">Your name <span class="req">*</span></label>
+                <input type="text" id="name" name="name" required autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="company">Company <span class="req">*</span></label>
+                <input type="text" id="company" name="company" required autocomplete="organization">
+              </div>
+              <div class="field">
+                <label for="email">Email <span class="req">*</span></label>
+                <input type="email" id="email" name="email" required autocomplete="email">
+              </div>
+              <div class="field">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="product">Product <span class="req">*</span></label>
+              <select id="product" name="product" required>
+                <option value="">Select a product</option>
+                <optgroup label="Palm oil &amp; fractions">
+                  <option>Crude Palm Oil (CPO)</option>
+                  <option>RBD Palm Oil</option>
+                  <option>RBD Palm Olein</option>
+                  <option>RBD Palm Superolein</option>
+                  <option>RBD Palm Stearin</option>
+                </optgroup>
+                <optgroup label="Kernel products">
+                  <option>Crude Palm Kernel Oil</option>
+                  <option>RBD Palm Kernel Oil</option>
+                  <option>Palm Kernel Expeller (PKE)</option>
+                </optgroup>
+                <optgroup label="Soft oils">
+                  <option>Crude Degummed Soybean Oil</option>
+                  <option>RBD Sunflower Oil</option>
+                  <option>RBD Canola / Rapeseed Oil</option>
+                </optgroup>
+                <optgroup label="Biomass">
+                  <option>Palm Kernel Shell (PKS)</option>
+                  <option>EFB fibre / pellets</option>
+                </optgroup>
+                <option>Other &mdash; described below</option>
+              </select>
+            </div>
+
+            <div class="grid grid--2" style="gap:0 var(--s3)">
+              <div class="field">
+                <label for="quantity">Quantity <span class="req">*</span></label>
+                <input type="text" id="quantity" name="quantity" required placeholder="e.g. 5,000 MT">
+                <p class="field__hint">Per shipment, or the monthly volume if this is a programme.</p>
+              </div>
+              <div class="field">
+                <label for="incoterm">Delivery term <span class="req">*</span></label>
+                <select id="incoterm" name="incoterm" required>
+                  <option value="">Select</option>
+                  <option>FOB</option><option>CFR</option><option>CIF</option>
+                  <option>FCA</option><option>Not sure yet</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="port">Discharge port <span class="req">*</span></label>
+                <input type="text" id="port" name="port" required placeholder="e.g. Nhava Sheva">
+              </div>
+              <div class="field">
+                <label for="laycan">Target laycan</label>
+                <input type="text" id="laycan" name="laycan" placeholder="e.g. second half October">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="message">Specification, packing and payment terms</label>
+              <textarea id="message" name="message" placeholder="Any specification your process requires, packing preference, the payment instrument you can open, and any certification you need (MSPO, RSPO model, EUDR documentation)."></textarea>
+            </div>
+
+            <button class="btn btn--primary" type="submit">Send enquiry</button>
+            <p class="field__hint" style="margin-top:var(--s2)">
+              We reply to enquiries within one Malaysian working day. Your details are used to
+              respond to this enquiry and are not shared with third parties.
+            </p>
+          </form>
+        </div>
+
+        <div>
+          <div class="card" style="background:var(--ink);color:#B6C7D0;border-color:var(--rule-dk)">
+            <span class="card__k" style="color:var(--carotene-lt)">Trading desk</span>
+            <h3 style="color:#fff">PAMAS Global Sdn Bhd</h3>
+            <p class="mono" style="font-size:.88rem;color:#B6C7D0;line-height:1.8">
+              <span class="tbd">[STREET ADDRESS]</span><br>
+              <span class="tbd">[POSTCODE, CITY]</span><br>
+              Malaysia
+            </p>
+            <p class="mono" style="font-size:.88rem;color:#B6C7D0;line-height:1.8;margin-top:1rem">
+              T &nbsp;<a href="tel:[PHONE]" style="color:#fff"><span class="tbd">[+60 PHONE]</span></a><br>
+              E &nbsp;<a href="mailto:[EMAIL]" style="color:#fff"><span class="tbd">[EMAIL]</span></a>
+            </p>
+            <p class="mono" style="font-size:.75rem;color:var(--slate-lt);margin-top:1.5rem;border-top:1px solid var(--rule-dk);padding-top:1rem">
+              Company no. <span class="tbd">[SSM REG. NO.]</span><br>
+              MPOB licence <span class="tbd">[MPOB LICENCE NO.]</span>
+            </p>
+          </div>
+
+          <div class="card" style="margin-top:var(--s3)">
+            <span class="card__k">Office hours</span>
+            <h3>Malaysian Standard Time</h3>
+            <p>Monday to Friday, 9:00 &ndash; 18:00 MYT (UTC+8).<br>
+               Outside those hours, email reaches the desk fastest.</p>
+          </div>
+
+          <div class="card" style="margin-top:var(--s3)">
+            <span class="card__k">New counterparty?</span>
+            <h3>What we will send</h3>
+            <p>Company registration documents, MPOB licence, bank details for verification and trade
+               references. We will ask you for the equivalent &mdash; it protects both sides.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <h2>PAMAS Global Sdn Bhd</h2>
+        <p style="color:#B6C7D0; font-size:.93rem">
+          Physical trade in palm oil products, soft oils and palm biomass, from origin in Malaysia
+          to refiners, feed producers and energy buyers worldwide.
+        </p>
+        <p class="mono" style="font-size:.75rem; color:#93A6B0">
+          Company no. <span class="tbd">[SSM REG. NO.]</span><br>
+          MPOB licence <span class="tbd">[MPOB LICENCE NO.]</span>
+        </p>
+      </div>
+      <div>
+        <h3>Company</h3>
+        <ul>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="process.html">How we work</a></li>
+          <li><a href="sustainability.html">Sustainability</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Products</h3>
+        <ul>
+          <li><a href="products.html#palm">Palm oil &amp; fractions</a></li>
+          <li><a href="products.html#kernel">Kernel products</a></li>
+          <li><a href="products.html#soft">Soft oils</a></li>
+          <li><a href="products.html#biomass">Palm biomass</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Trading desk</h3>
+        <ul class="mono" style="font-size:.85rem">
+          <li><span class="tbd">[STREET ADDRESS]</span></li>
+          <li><span class="tbd">[POSTCODE, CITY]</span>, Malaysia</li>
+          <li><a href="tel:[PHONE]"><span class="tbd">[+60 PHONE]</span></a></li>
+          <li><a href="mailto:[EMAIL]"><span class="tbd">[EMAIL]</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__base">
+      <span>&copy; <span class="tbd">[YEAR]</span> PAMAS Global Sdn Bhd. All rights reserved.</span>
+      <span><a href="credits.html">Photo credits &amp; licences</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var t = document.querySelector('.nav-toggle'), n = document.getElementById('nav');
+  t.addEventListener('click', function () {
+    var open = n.getAttribute('data-open') === 'true';
+    n.setAttribute('data-open', String(!open));
+    t.setAttribute('aria-expanded', String(!open));
+    t.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
+  });
+</script>
+</body>
+</html>
