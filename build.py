@@ -12,6 +12,7 @@ wrapped in [SQUARE BRACKETS] render highlighted on the page, so nothing
 unverified can ship unnoticed.
 """
 import json, pathlib, re
+from components import axis, opening, FRACTIONS
 
 ROOT = pathlib.Path(__file__).parent
 
@@ -91,11 +92,11 @@ def foot():
     <div class="foot__grid">
       <div>
         <h2>PAMAS Global Sdn Bhd</h2>
-        <p style="color:#A8B8C0; font-size:.88rem; max-width:34ch">
+        <p style="color:var(--paper-2); font-size:.88rem; max-width:34ch">
           Physical trade in palm oil products, soft oils and palm biomass, from
           origin in Malaysia to refiners, feed producers and energy buyers worldwide.
         </p>
-        <p class="mono" style="font-size:.7rem; color:#7D919B">
+        <p class="mono" style="font-size:.66rem; color:var(--muted)">
           Company no. {tbd(c["reg_no"])}<br>
           MPOB licence {tbd(c["mpob_licence"])}
         </p>
@@ -150,33 +151,6 @@ def foot():
 
 
 # --- section helpers -------------------------------------------------------
-
-def hero(h1, sub, img, cta_primary, cta_secondary=None, terms=None):
-    """Layout family A: full-bleed media, asymmetric split, terms ledger."""
-    second = (f'<a class="btn btn--ondark" href="{cta_secondary[1]}">{cta_secondary[0]}</a>'
-              if cta_secondary else "")
-    tm = ""
-    if terms:
-        rows = "\n".join(
-            f'        <div><dt>{k}</dt><dd>{v}</dd></div>' for k, v in terms)
-        tm = f'\n      <dl class="terms">\n{rows}\n      </dl>'
-    return f'''
-  <section class="hero">
-    <div class="hero__bg"><img src="assets/img/{img}" alt="" fetchpriority="high"></div>
-    <div class="wrap hero__inner">
-      <div class="hero__grid">
-        <div>
-          <h1>{h1}</h1>
-          <p class="hero__sub">{sub}</p>
-          <div class="btn-row">
-            <a class="btn btn--primary" href="{cta_primary[1]}">{cta_primary[0]}</a>
-            {second}
-          </div>
-        </div>{tm}
-      </div>
-    </div>
-  </section>
-'''
 
 
 def band(inner, rail=None, flush=False):

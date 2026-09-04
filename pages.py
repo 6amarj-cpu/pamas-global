@@ -9,46 +9,20 @@ House rules enforced here:
 
 
 def build(g):
-    write, hero, band, imgbreak, tbd = (
-        g["write"], g["hero"], g["band"], g["imgbreak"], g["tbd"])
+    write, opening, axis, band, imgbreak, tbd = (
+        g["write"], g["opening"], g["axis"], g["band"], g["imgbreak"], g["tbd"])
     C = g["COMPANY"]
 
     # =======================================================================
     # HOME
     # =======================================================================
-    ledger_home = '''
-          <h2>What we trade</h2>
-          <p class="lede">Three connected books. All originate within a few hundred
-            kilometres of the same ports, which is why one desk covers them properly
-            instead of spreading thin across unrelated markets.</p>
-
-          <div class="tablescroll" style="margin-top:2rem">
-            <table class="ledger">
-              <thead>
-                <tr><th scope="col">Product</th><th scope="col">Key parameters</th>
-                    <th scope="col">Packing</th><th scope="col">Terms</th></tr>
-              </thead>
-              <tbody>
-                <tr class="cluster"><th colspan="4" scope="colgroup">Palm oil and fractions</th></tr>
-                <tr><th scope="row">RBD Palm Olein</th><td>FFA 0.1% max, IV 56 min, CP 10 &deg;C max</td><td>Bulk, flexitank, drums</td><td>PORAM</td></tr>
-                <tr><th scope="row">RBD Palm Oil</th><td>FFA 0.1% max, IV 50 to 55, MP 33 to 39 &deg;C</td><td>Bulk, flexitank</td><td>PORAM</td></tr>
-                <tr><th scope="row">RBD Palm Stearin</th><td>FFA 0.2% max, IV 48 max, MP 44 to 56 &deg;C</td><td>Bulk, drums</td><td>PORAM</td></tr>
-                <tr><th scope="row">Crude Palm Oil</th><td>FFA 5.0% max, M&amp;I 0.25% max, DOBI 2.3 min</td><td>Bulk vessel</td><td>PORAM</td></tr>
-
-                <tr class="cluster"><th colspan="4" scope="colgroup">Soft oils</th></tr>
-                <tr><th scope="row">RBD Sunflower Oil</th><td>FFA 0.1% max, PV 1.0 meq/kg max</td><td>Flexitank, ISO tank</td><td>FOSFA</td></tr>
-                <tr><th scope="row">Crude Degummed Soybean Oil</th><td>FFA 0.75% max, phosphorus 200 ppm max</td><td>Bulk vessel</td><td>FOSFA</td></tr>
-                <tr><th scope="row">RBD Canola Oil</th><td>FFA 0.1% max, IV 110 to 126, low erucic</td><td>Flexitank, drums</td><td>FOSFA</td></tr>
-
-                <tr class="cluster"><th colspan="4" scope="colgroup">Palm biomass</th></tr>
-                <tr><th scope="row">Palm Kernel Shell</th><td>GCV 4,200 kcal/kg, moisture 15% max, sulphur 0.1% max</td><td>Bulk, jumbo bags</td><td>By contract</td></tr>
-                <tr><th scope="row">Palm Kernel Expeller</th><td>Protein 14 to 16%, oil 6 to 9%, fibre 18% max</td><td>Bulk, 50 kg bags</td><td>By contract</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="note" style="margin-top:1rem">Indicative trading specifications.
-            Tighter parameters are available on request and are confirmed in the firm offer.</p>
-          <div class="btn-row" style="margin-top:1.5rem">
+    range_section = '''
+          <h2>One raw material, separated by temperature.</h2>
+          <p class="lede">Chill crude palm oil and it splits: a hard stearin that stays
+            solid, a soft olein that stays liquid. Every specification we quote is really
+            an answer to one question, which is where on that axis your process needs to sit.</p>
+''' + axis() + '''
+          <div class="btn-row" style="margin-top:2rem">
             <a class="btn btn--line" href="products.html">Full specifications</a>
           </div>'''
 
@@ -127,19 +101,14 @@ def build(g):
       "Malaysia-based physical commodity trader supplying crude and refined palm oil "
       "products, soft oils and palm biomass to refiners, feed producers and energy "
       "buyers worldwide.",
-      hero(
-        "Palm oil, soft oils and biomass, delivered against specification.",
-        "We source from Malaysian and Indonesian mills and ship to refiners, feed "
-        "producers and energy buyers worldwide.",
-        "estate-telupid.jpg",
+      opening(
+        "We trade every cut of the palm barrel, plus the soft oils beside it.",
+        "Physical parcels from Malaysian and Indonesian mills to refiners, feed "
+        "producers and energy buyers worldwide. Each one on a stated specification "
+        "and an independent inspection.",
         ("Request a quote", "contact.html"),
-        ("See specifications", "products.html"),
-        terms=[("Contract", "PORAM / FOSFA"),
-               ("Incoterms", "FOB, CFR, CIF"),
-               ("Load ports", "Klang, P. Gudang"),
-               ("Inspection", "SGS, Intertek"),
-               ("Parcel", "24 to 12,500 MT")])
-      + band(ledger_home, rail=("Book", "Palm, soft oils,<br>biomass"), flush=True)
+        ("See the full range", "products.html"))
+      + band(range_section, rail=("Range", "Hard fats to<br>liquid oils"), flush=True)
       + band(credibility, rail=("Standing", "What backs<br>the contract"))
       + imgbreak("harvest-cutter.jpg",
                  "Every parcel starts at a mill we can name and a surveyor you can nominate.")
@@ -210,9 +179,9 @@ def build(g):
       "About PAMAS Global Sdn Bhd, Malaysian physical commodity trader",
       "How PAMAS Global is structured, how it takes positions, and how it manages "
       "counterparty risk in physical palm and soft oil trade.",
-      hero("We take title, carry the position, and perform on the contract.",
-        "That distinction decides who carries the risk when a market moves or a vessel runs late.",
-        "estate-pd.jpg",
+      opening("We take title, carry the position, and perform on the contract.",
+        "That distinction decides who carries the risk when a market moves or a vessel "
+        "runs late. We are a principal, not a broker.",
         ("Contact the desk", "contact.html"))
       + band(who, rail=("Company", "Who we are"), flush=True)
       + band(how, rail=("Method", "How we<br>operate"))
@@ -315,11 +284,14 @@ def build(g):
       "Products and specifications, PAMAS Global Sdn Bhd",
       "Full trading specifications for palm oil and fractions, palm kernel products, "
       "soft oils and palm biomass, with packing, load ports and contract terms.",
-      hero("Every product, on a published specification.",
+      opening("Every product, on a published specification.",
         "These are the parameters we contract against. Nothing here is vague, and "
         "nothing changes after you have signed.",
-        "ffb-bunch-alt.jpg",
         ("Request a firm offer", "contact.html"))
+      + band('''
+          <h2>The range, on one axis</h2>
+          <p class="lede">Where each fraction sits between hard fat and liquid oil.</p>
+''' + axis(), rail=("Range", "Iodine value<br>16 to 141"), flush=True)
       + band(palm, rail=("01", "Palm oil and<br>fractions"), flush=True)
       + band(kernel, rail=("02", "Kernel<br>products"))
       + band(soft, rail=("03", "Soft oils"))
@@ -393,10 +365,9 @@ def build(g):
       "How we work, enquiry to discharge, PAMAS Global Sdn Bhd",
       "The seven steps of a physical commodity shipment with PAMAS Global: enquiry, "
       "firm offer, contract, payment instrument, nomination and loading, documents, discharge.",
-      hero("From enquiry to discharge, in seven steps.",
+      opening("From enquiry to discharge, in seven steps.",
         "Physical trade goes wrong in predictable places. This is the sequence we run, "
         "and what has to be true before each stage starts.",
-        "mill-interior.jpg",
         ("Start an enquiry", "contact.html"))
       + f'''
   <section class="band band--flush">
@@ -482,10 +453,9 @@ def build(g):
       "Sustainability and traceability, PAMAS Global Sdn Bhd",
       "Certification, traceability and deforestation due diligence in the palm supply "
       "chain: MSPO, RSPO, EUDR readiness, and what can be evidenced for a given parcel.",
-      hero("Traceability you can evidence, not adjectives.",
+      opening("Traceability you can evidence, not adjectives.",
         "The useful response to palm's environmental history is knowing which mill a "
         "parcel came from and being able to prove it to a regulator.",
-        "plantation-melaka.jpg",
         ("Talk to the desk", "contact.html"))
       + band(certs, rail=("Schemes", "MSPO and<br>RSPO"), flush=True)
       + band(eudr, rail=("EUDR", "Regulatory<br>evidence"))
@@ -616,10 +586,9 @@ def build(g):
       "Contact the trading desk, PAMAS Global Sdn Bhd",
       "Send an enquiry to PAMAS Global. Include product, quantity, delivery term and "
       "discharge port for a same-day indication.",
-      hero("Send us an enquiry.",
+      opening("Send us an enquiry.",
         "Include product, quantity, delivery term and discharge port, and we can usually "
         "come back the same working day.",
-        "hero-plantation.jpg",
         ("Jump to the form", "#form"))
       + f'<div id="form"></div>' + band(form, flush=True))
 

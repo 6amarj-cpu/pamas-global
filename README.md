@@ -78,6 +78,7 @@ credits.html            Photo attribution (required by CC BY-SA)
 assets/css/site.css     All styling; design tokens at the top
 assets/img/             Photographs + manifest.json (licence metadata)
 build.py                Page shell, company details, credit generation
+components.py           The fraction axis and the opening block
 pages.py                Page content
 ```
 
@@ -98,36 +99,43 @@ python3 -m http.server 8000
 
 ## Design notes
 
-**Language: the trading document.** A physical commodity contract is a ruled sheet of
-grouped parameters, so the page is built from rules and columns rather than cards and
-colour bands. Dials: variance 6, motion 3, density 7. Variance is capped at 6 because the
-audience is a procurement panel; density is raised to 7 because commodity trading genuinely
-is a data cockpit.
+**Organising idea: the fraction.** Everything PAMAS trades is one raw material separated by
+temperature. Chill crude palm oil and it splits into a hard stearin and a soft olein. Every
+parameter the trade quotes, iodine value, cloud point, melting point, measures the same
+thing: where on the hardness axis a fraction sits.
 
-**Palette.** Cool technical neutral ground with navy as ink and rule colour, plus a
-carotene accent taken from the colour of crude palm oil. Navy is deliberate: the palm
-sector is uniformly green, so navy reads as a trading house rather than a plantation. The
-theme is locked light throughout. An earlier build alternated light and dark bands, which
-is what made it read as stacked blocks rather than a designed page.
+So the site is built on that axis rather than on a generic corporate template. The product
+range is drawn as a range chart plotted against real iodine values, from palm kernel oil at
+IV 16 through to sunflower at 141. It is the page's main content, it answers the buyer's
+actual question (which fraction does my process need), and it could not be transplanted to
+any other company. The chart lives in `components.py`; edit `FRACTIONS` and every instance
+updates.
 
-**Type.** Geist for everything structural, Geist Mono for every specification value, port,
-incoterm and figure. The monospace does real work: it is what makes a parameter read as a
-measured value rather than marketing copy.
+**Palette.** Taken from the appearance of the fractions themselves rather than from
+corporate blue: a warm near-black ground, off-white type, and a ramp running from the pale
+solids through amber to crude palm oil's deep red. The colour system and the organising idea
+are the same thing. Theme is locked dark throughout; a trading screen is dark, and the
+material ramp only reads properly against it.
 
-**Structure.** Section identity is carried by a margin rail, the way a contract carries its
-clause reference, rather than by an eyebrow label stacked above every headline. Six distinct
-layout families appear once each: full-bleed media hero, grouped ledger, statement with
-definition list, full-bleed image break, wide prose over a two-column list, and a closing row.
+**Type.** Archivo at 900 for display, Schibsted Grotesk for body, Martian Mono for every
+specification value, port and incoterm. The monospace does real work: it is what makes a
+parameter read as a measured value rather than marketing copy.
+
+**Structure.** There is no photograph behind the headline. A stock plantation shot with a
+dark scrim and white type over it is the single move every generated site makes, and it says
+nothing this business does not share with every other palm company. The opening states the
+thesis and hands straight to the axis. Section identity sits in a margin rail the way a
+contract carries its clause reference, not in an eyebrow label stacked above every headline.
+Six layout families appear once each.
 
 **Why there are no testimonials.** The credibility case is built from things a counterparty
 can verify: published specifications, named inspection agencies, standard contract terms,
 settlement instruments, licence numbers. Invented client quotes and logos would be trivially
-falsifiable in a market this small, and would undermine exactly the impression they intend
-to create. Add real ones when you have them; the layout has room.
+falsifiable in a market this small. Add real ones when you have them; the layout has room.
 
 ## Accessibility
 
-Verified at build: WCAG AA contrast on every text pair, visible focus rings, skip link,
-semantic landmarks and headings, labelled form fields, alt text on every image, 46px minimum
-touch targets, `prefers-reduced-motion` respected, valid HTML on all seven pages, and no
-horizontal overflow at 375px.
+Verified at build: WCAG AA contrast on every text pair against the dark ground, visible focus
+rings, skip link, semantic landmarks and headings, labelled form fields, alt text on every
+image, 46px minimum touch targets, `prefers-reduced-motion` respected, valid HTML on all
+seven pages, and the range chart's scale aligned to its plot at every breakpoint.
