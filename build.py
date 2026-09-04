@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
 """
-PAMAS Global — static site generator.
+PAMAS Global static site generator.
 
-The published site is plain HTML; this script only assembles it so that the
-header, footer and company details live in one place.
+The published site is plain HTML; this script only assembles it so the header,
+footer and company details live in one place.
 
     python3 build.py
 
-To replace a placeholder everywhere, edit COMPANY below and re-run.
-Values still wrapped in [SQUARE BRACKETS] render with a yellow highlight on the
-page, so nothing unverified can ship unnoticed.
+To replace a placeholder everywhere, edit COMPANY below and re-run. Values still
+wrapped in [SQUARE BRACKETS] render highlighted on the page, so nothing
+unverified can ship unnoticed.
 """
 import json, pathlib, re
 
 ROOT = pathlib.Path(__file__).parent
 
 # ---------------------------------------------------------------------------
-# COMPANY FACTS — replace the bracketed values, then re-run this script.
+# COMPANY FACTS. Replace the bracketed values, then re-run this script.
 # ---------------------------------------------------------------------------
 COMPANY = {
     "year_founded": "[YEAR]",
@@ -28,8 +28,6 @@ COMPANY = {
     "phone_href":   "[PHONE]",
     "email":        "[EMAIL]",
     "countries":    "[N]",
-    "years_active": "[N]",
-    "annual_volume":"[N]",
 }
 
 NAV = [
@@ -68,11 +66,11 @@ def head(title, desc, current):
 <header class="masthead">
   <div class="wrap masthead__bar">
     <a class="brand" href="index.html">
-      <span class="brand__name">PAMAS<span class="brand__mark">.</span>GLOBAL</span>
-      <span class="brand__sub">Sdn Bhd &middot; Malaysia</span>
+      <span class="brand__name">PAMAS<i>.</i>GLOBAL</span>
+      <span class="brand__sub">Sdn Bhd</span>
     </a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
     <nav class="nav" id="nav" aria-label="Primary">
 {nav}
@@ -89,15 +87,15 @@ def foot():
     return f'''</main>
 
 <footer class="foot">
-  <div class="wrap">
+  <div class="wrap foot__inner">
     <div class="foot__grid">
       <div>
         <h2>PAMAS Global Sdn Bhd</h2>
-        <p style="color:#B6C7D0; font-size:.93rem">
-          Physical trade in palm oil products, soft oils and palm biomass, from origin in Malaysia
-          to refiners, feed producers and energy buyers worldwide.
+        <p style="color:#A8B8C0; font-size:.88rem; max-width:34ch">
+          Physical trade in palm oil products, soft oils and palm biomass, from
+          origin in Malaysia to refiners, feed producers and energy buyers worldwide.
         </p>
-        <p class="mono" style="font-size:.75rem; color:#93A6B0">
+        <p class="mono" style="font-size:.7rem; color:#7D919B">
           Company no. {tbd(c["reg_no"])}<br>
           MPOB licence {tbd(c["mpob_licence"])}
         </p>
@@ -114,7 +112,7 @@ def foot():
       <div>
         <h3>Products</h3>
         <ul>
-          <li><a href="products.html#palm">Palm oil &amp; fractions</a></li>
+          <li><a href="products.html#palm">Palm oil and fractions</a></li>
           <li><a href="products.html#kernel">Kernel products</a></li>
           <li><a href="products.html#soft">Soft oils</a></li>
           <li><a href="products.html#biomass">Palm biomass</a></li>
@@ -122,7 +120,7 @@ def foot():
       </div>
       <div>
         <h3>Trading desk</h3>
-        <ul class="mono" style="font-size:.85rem">
+        <ul class="mono" style="font-size:.8rem">
           <li>{tbd(c["street"])}</li>
           <li>{tbd(c["city"])}, Malaysia</li>
           <li><a href="tel:{c["phone_href"]}">{tbd(c["phone"])}</a></li>
@@ -132,7 +130,7 @@ def foot():
     </div>
     <div class="foot__base">
       <span>&copy; {tbd(c["year_founded"])} PAMAS Global Sdn Bhd. All rights reserved.</span>
-      <span><a href="credits.html">Photo credits &amp; licences</a></span>
+      <span><a href="credits.html">Photo credits and licences</a></span>
     </div>
   </div>
 </footer>
@@ -151,58 +149,94 @@ def foot():
 '''
 
 
-def hero(eyebrow, h1, lede, img, alt, buttons=""):
+# --- section helpers -------------------------------------------------------
+
+def hero(h1, sub, img, cta_primary, cta_secondary=None, terms=None):
+    """Layout family A: full-bleed media, asymmetric split, terms ledger."""
+    second = (f'<a class="btn btn--ondark" href="{cta_secondary[1]}">{cta_secondary[0]}</a>'
+              if cta_secondary else "")
+    tm = ""
+    if terms:
+        rows = "\n".join(
+            f'        <div><dt>{k}</dt><dd>{v}</dd></div>' for k, v in terms)
+        tm = f'\n      <dl class="terms">\n{rows}\n      </dl>'
     return f'''
   <section class="hero">
-    <div class="hero__media">
-      <img src="assets/img/{img}" alt="{alt}" fetchpriority="high">
-    </div>
+    <div class="hero__bg"><img src="assets/img/{img}" alt="" fetchpriority="high"></div>
     <div class="wrap hero__inner">
-      <p class="hero__eyebrow">{eyebrow}</p>
-      <h1>{h1}</h1>
-      <p class="hero__lede">{lede}</p>
-      {buttons}
+      <div class="hero__grid">
+        <div>
+          <h1>{h1}</h1>
+          <p class="hero__sub">{sub}</p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="{cta_primary[1]}">{cta_primary[0]}</a>
+            {second}
+          </div>
+        </div>{tm}
+      </div>
     </div>
   </section>
 '''
 
 
-def figure(img, alt, credit):
-    return f'''<figure class="figure">
-          <img src="assets/img/{img}" alt="{alt}" loading="lazy">
-          <figcaption>{credit}</figcaption>
-        </figure>'''
+def band(inner, rail=None, flush=False):
+    """A ruled section. The rail replaces a stacked eyebrow label."""
+    cls = "band band--flush" if flush else "band"
+    if rail is None:
+        return f'''
+  <section class="{cls}">
+    <div class="wrap band__inner">
+{inner}
+    </div>
+  </section>
+'''
+    mark, sub = rail
+    return f'''
+  <section class="{cls}">
+    <div class="wrap band__inner">
+      <div class="railed">
+        <div class="rail"><b>{mark}</b>{sub}</div>
+        <div>
+{inner}
+        </div>
+      </div>
+    </div>
+  </section>
+'''
 
 
-# ---------------------------------------------------------------------------
-# Photo credit lines, generated from the Commons metadata captured at fetch time
-# ---------------------------------------------------------------------------
+def imgbreak(img, text):
+    """Layout family D: full-bleed image with one line of text."""
+    return f'''
+  <section class="break">
+    <div class="break__bg"><img src="assets/img/{img}" alt="" loading="lazy"></div>
+    <div class="wrap"><p class="break__text">{text}</p></div>
+  </section>
+'''
+
+
 MANIFEST = json.loads((ROOT / "assets/img/manifest.json").read_text())
-
-
-def credit(slug):
-    m = MANIFEST[slug]
-    lic, url = m["license"], m.get("licenseurl") or ""
-    if lic.lower().startswith("public") or lic == "CC0":
-        return (f'Image: {m["title"]} by {m["author"]}, via '
-                f'<a href="{m["descurl"]}">Wikimedia Commons</a>, {lic}.')
-    licence = f'<a href="{url}">{lic}</a>' if url else lic
-    return (f'Image: {m["title"]} by {m["author"]}, via '
-            f'<a href="{m["descurl"]}">Wikimedia Commons</a>, licensed under {licence}.')
 
 
 def write(name, title, desc, body):
     html = head(title, desc, name) + body + foot()
     (ROOT / name).write_text(html)
-    print(f"  wrote {name:24} {len(html)//1024:>3} KB")
+    print(f"  {name:24} {len(html)//1024:>3} KB")
 
 
 if __name__ == "__main__":
     import pages
-    print("Building PAMAS Global site...")
+    print("Building PAMAS Global...")
     pages.build(globals())
-    unresolved = sum(
-        len(re.findall(r'class="tbd"', (ROOT / f).read_text()))
-        for f in ROOT.glob("*.html"))
-    print(f"\nDone. {unresolved} placeholder(s) still to fill — "
-          f"edit COMPANY in build.py and re-run.")
+
+    # Guard rails: these are the checks the previous build failed.
+    files = [f for f in ROOT.glob("*.html")]
+    dashes = sum(len(re.findall(r"—|&mdash;|–|&ndash;", f.read_text())) for f in files)
+    tbds = sum(len(re.findall(r'class="tbd"', f.read_text())) for f in files)
+    print(f"\n  em-dashes ......... {dashes}  (must be 0)")
+    print(f"  placeholders ...... {tbds}  (fill COMPANY above)")
+    if dashes:
+        for f in files:
+            n = len(re.findall(r"—|&mdash;|–|&ndash;", f.read_text()))
+            if n:
+                print(f"      {f.name}: {n}")

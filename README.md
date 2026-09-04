@@ -98,27 +98,36 @@ python3 -m http.server 8000
 
 ## Design notes
 
-**Palette.** Deep navy-teal ground with a carotene orange accent taken from the colour of crude
-palm oil itself. Navy is deliberate: the palm sector is uniformly green, so navy reads as a
-trading house rather than a plantation. Accent is reserved for calls to action and data emphasis.
+**Language: the trading document.** A physical commodity contract is a ruled sheet of
+grouped parameters, so the page is built from rules and columns rather than cards and
+colour bands. Dials: variance 6, motion 3, density 7. Variance is capped at 6 because the
+audience is a procurement panel; density is raised to 7 because commodity trading genuinely
+is a data cockpit.
 
-**Type.** Archivo for display, Public Sans for body, IBM Plex Mono for all specification values,
-ports and incoterms. The monospace is doing real work — it is what makes a parameter read as a
+**Palette.** Cool technical neutral ground with navy as ink and rule colour, plus a
+carotene accent taken from the colour of crude palm oil. Navy is deliberate: the palm
+sector is uniformly green, so navy reads as a trading house rather than a plantation. The
+theme is locked light throughout. An earlier build alternated light and dark bands, which
+is what made it read as stacked blocks rather than a designed page.
+
+**Type.** Geist for everything structural, Geist Mono for every specification value, port,
+incoterm and figure. The monospace does real work: it is what makes a parameter read as a
 measured value rather than marketing copy.
 
-**Signature.** The certificate of analysis. In physical trade the governing document is the COA, so
-the site's structural language is taken from it: the specification strip under the hero, the
-product cards built as assay tables, hairline rules, tabular figures.
+**Structure.** Section identity is carried by a margin rail, the way a contract carries its
+clause reference, rather than by an eyebrow label stacked above every headline. Six distinct
+layout families appear once each: full-bleed media hero, grouped ledger, statement with
+definition list, full-bleed image break, wide prose over a two-column list, and a closing row.
 
-**Why there are no testimonials.** The site makes its credibility case from things a counterparty
-can verify — published specifications, named inspection agencies, standard contract terms,
+**Why there are no testimonials.** The credibility case is built from things a counterparty
+can verify: published specifications, named inspection agencies, standard contract terms,
 settlement instruments, licence numbers. Invented client quotes and logos would be trivially
-falsifiable in a market this small, and would undermine exactly the impression they intend to
-create. Add real ones when you have them; the layout has room.
+falsifiable in a market this small, and would undermine exactly the impression they intend
+to create. Add real ones when you have them; the layout has room.
 
 ## Accessibility
 
-Verified during build: WCAG AA contrast on all text pairs (accent adjusted from `#C2571A` to
-`#AE4C12` to clear 4.5:1), visible focus rings, skip link, semantic landmarks and headings,
-labelled form fields, `alt` on every image, 48px minimum touch targets, `prefers-reduced-motion`
-respected, and no horizontal overflow at 375px.
+Verified at build: WCAG AA contrast on every text pair, visible focus rings, skip link,
+semantic landmarks and headings, labelled form fields, alt text on every image, 46px minimum
+touch targets, `prefers-reduced-motion` respected, valid HTML on all seven pages, and no
+horizontal overflow at 375px.
